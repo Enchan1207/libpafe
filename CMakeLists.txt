@@ -17,6 +17,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(src)
 
 option(LIBPAFE_BUILD_SAMPLES "Build sample programs" OFF)
+option(LIBPAFE_FORCE_LIBUSB1 "Force to use libusb 1.0" ON)
 
 if(LIBPAFE_BUILD_SAMPLES)
     message(NOTICE "Build samples")
