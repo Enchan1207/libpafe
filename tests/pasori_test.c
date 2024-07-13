@@ -4,102 +4,95 @@
 
 #include "libpafe.h"
 
-int
-test(pasori *p)
-{
-  unsigned char data[] = "test data.";
-  int n = sizeof(data) - 1;
-  
-  printf("Echo test... ");
-  if (pasori_test_echo(p, data, &n)) {
-    printf("error!\n");
-    return 1;
-  } else {
-    printf("success\n");
-  }
+int test(pasori *p) {
+    unsigned char data[] = "test data.";
+    int n = sizeof(data) - 1;
 
-  printf("EPROM test... ");
-  if (pasori_test_eprom(p)) {
-    printf("error!\n");
-    return 1;
-  } else {
-    printf("success\n");
-  }
+    printf("Echo test... ");
+    if (pasori_test_echo(p, data, &n)) {
+        printf("error!\n");
+        return 1;
+    } else {
+        printf("success\n");
+    }
 
-  printf("RAM test... ");
-  if (pasori_test_ram(p)) {
-    printf("error!\n");
-    return 1;
-  } else {
-    printf("success\n");
-  }
+    printf("EPROM test... ");
+    if (pasori_test_eprom(p)) {
+        printf("error!\n");
+        return 1;
+    } else {
+        printf("success\n");
+    }
 
-  printf("CPU test... ");
-  if (pasori_test_cpu(p)) {
-    printf("error!\n");
-    return 1;
-  } else {
-    printf("success\n");
-  }
+    printf("RAM test... ");
+    if (pasori_test_ram(p)) {
+        printf("error!\n");
+        return 1;
+    } else {
+        printf("success\n");
+    }
 
-  printf("Polling test... ");
-  if (pasori_test_polling(p)) {
-    printf("error!\n");
-    return 1;
-  } else {
-    printf("success\n");
-  }
-  return 0;
+    printf("CPU test... ");
+    if (pasori_test_cpu(p)) {
+        printf("error!\n");
+        return 1;
+    } else {
+        printf("success\n");
+    }
+
+    printf("Polling test... ");
+    if (pasori_test_polling(p)) {
+        printf("error!\n");
+        return 1;
+    } else {
+        printf("success\n");
+    }
+    return 0;
 }
 
-void
-show_version(pasori *p)
-{
-  int v1, v2;
+void show_version(pasori *p) {
+    int v1, v2;
 
-  if (pasori_version(p, &v1, &v2)) {
-    printf("cannot get version.\n");
-    return;
-  }
+    if (pasori_version(p, &v1, &v2)) {
+        printf("cannot get version.\n");
+        return;
+    }
 
-  switch (pasori_type(p)) {
-  case PASORI_TYPE_S310:
-    printf("PaSoRi (RC-S310)\n firmware version %d.%02d\n", v1, v2);
-    break;
-  case PASORI_TYPE_S320:
-    printf("PaSoRi (RC-S320)\n firmware version %d.%02d\n", v1, v2);
-    break;
-  case PASORI_TYPE_S330:
-    printf("PaSoRi (RC-S330)\n firmware version %d.%02d\n", v1, v2);
-    break;
-  default:
-    printf("unknown hardware.\n");
-  }
-
+    switch (pasori_type(p)) {
+        case PASORI_TYPE_S310:
+            printf("PaSoRi (RC-S310)\n firmware version %d.%02d\n", v1, v2);
+            break;
+        case PASORI_TYPE_S320:
+            printf("PaSoRi (RC-S320)\n firmware version %d.%02d\n", v1, v2);
+            break;
+        case PASORI_TYPE_S330:
+            printf("PaSoRi (RC-S330)\n firmware version %d.%02d\n", v1, v2);
+            break;
+        default:
+            printf("unknown hardware.\n");
+    }
 }
 
-int
-main(void)
-{
-  pasori *p;
-  int type;
+int main(void) {
+    pasori *p;
+    int type;
 
-  p = pasori_open();
-  if (!p) {
-    printf("error\n");
-    exit(-1);
-  }
-  pasori_init(p);
+    p = pasori_open();
+    if (!p) {
+        printf("error\n");
+        exit(-1);
+    }
+    pasori_init(p);
 
-  show_version(p);
+    show_version(p);
 
-  type = pasori_type(p);
-  if ((type == PASORI_TYPE_S310 || type == PASORI_TYPE_S320) && test(p)) {
+    type = pasori_type(p);
+    if ((type == PASORI_TYPE_S310 || type == PASORI_TYPE_S320) && test(p)) {
+        pasori_close(p);
+        return 1;
+    }
+
     pasori_close(p);
-    return 1;
-  }
 
-  pasori_close(p);
-
-  return 0;
+    return 0;
 }

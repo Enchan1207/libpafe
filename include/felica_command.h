@@ -5,8 +5,8 @@
 felica *felica_polling(pasori *p, uint16 systemcode, uint8 RFU, uint8 timeslot);
 int felica_get_idm(felica *f, uint8 *idm);
 int felica_get_pmm(felica *f, uint8 *idm);
-int felica_read(felica * f, int *n, felica_block_info *info, uint8 *data);
-int felica_read_single(felica * f, int servicecode, int mode, uint8 addr, uint8 *data);
+int felica_read(felica *f, int *n, felica_block_info *info, uint8 *data);
+int felica_read_single(felica *f, int servicecode, int mode, uint8 addr, uint8 *data);
 int felica_write(felica *f, int servicecode, int mode, uint8 addr, uint8 *data);
 int felica_request_service(felica *f, int *n, uint16 *list, uint16 *data);
 int felica_request_response(felica *f, uint8 *mode);
