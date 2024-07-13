@@ -53,5 +53,5 @@ ln -s ../pasori.rules 010_pasori.rules
 
 ## 連絡先
 
-ZXB01226@nifty.com （オリジナルソースコード）
-rfujita@redhat.com （RPM化及びバージョン0.0.7をベースにしたgit化）
+- ZXB01226@nifty.com （オリジナルソースコード）
+- rfujita@redhat.com （RPM化及びバージョン0.0.7をベースにしたgit化）
