@@ -13,11 +13,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        libusb_version: ['"libusb-0.1-*" libusb-dev', '"libusb-1.0-*"']
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Install libusb
-        run: sudo apt-get install "libusb-0.1-*"
+        run: sudo apt-get install ${{ libusb_version }}
 
       - name: Configure CMake
         run: |
