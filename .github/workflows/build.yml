@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install libusb
+        run: apt-get install libusb-1.0.0
+
       - name: Configure CMake
         run: |
           mkdir build
