@@ -6,14 +6,14 @@
 
 #include "libpafe.h"
 
-void mydump(uint8 *p, int size) {
+void mydump(uint8_t *p, int size) {
     int i;
     for (i = 0; i != size; i++) {
         printf("%02X", p[i]);
     }
 }
 
-void show_idminfo(uint8 *idm) {
+void show_idminfo(uint8_t *idm) {
     time_t mtime;
     time_t ntime;
     struct tm fepoc;
@@ -65,7 +65,7 @@ const sinfo Sifo[] = {
     {11, " Purse (Read Only)         "},
     {-1, " INVALID or UNKNOWN        "}};
 
-void print_service_info(uint16 attr) {
+void print_service_info(uint16_t attr) {
     unsigned int j;
 
     for (j = 0; j < sizeof(Sifo) / sizeof(*Sifo); j++) {
@@ -82,7 +82,7 @@ void print_service_info(uint16 attr) {
 }
 
 void dump_service(felica *f) {
-    uint8 b[16];
+    uint8_t b[16];
     int i, j, r;
 
     r = felica_search_service(f);
@@ -125,7 +125,7 @@ void dump_service(felica *f) {
 
 void enum_service(felica *f) {
     felica *ff;
-    uint16 resp[256];
+    uint16_t resp[256];
     int i, n, r;
 
     n = sizeof(resp) / sizeof(*resp);
