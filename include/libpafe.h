@@ -63,14 +63,24 @@ typedef struct _felica_block_info {
 
 /* DEFINE constants */
 
+/** IDm のサイズ */
 #define FELICA_IDM_LENGTH 8
+
+/** PMm のサイズ */
 #define FELICA_PMM_LENGTH 8
+
+/** ブロックのサイズ */
 #define FELICA_BLOCK_LENGTH 16
 
 #define FELICA_AREA_NUM_MAX 121
 
+/** 全てのシステム */
 #define FELICA_POLLING_ANY 0xffff
+
+/** Suica */
 #define FELICA_POLLING_SUICA 0x0003
+
+/** Edy */
 #define FELICA_POLLING_EDY 0xfe00
 
 #define FELICA_SERVICE_SUICA_IN_OUT 0x108f
@@ -128,12 +138,25 @@ typedef struct _felica_block_info {
 #define PASORI2_DIAG_CPU_FANCTION_TEST 0x03
 #define PASORI2_DIAG_POLLING_TEST_TO_CARD 0x10
 
+/** 引数に誤りがある。 */
 #define PASORI_ERR_PARM 1
+
+/** メモリの確保に失敗した。 */
 #define PASORI_ERR_MEM 2
+
+/** 通信エラー。 */
 #define PASORI_ERR_COM 3
+
+/** データに異常がある。 */
 #define PASORI_ERR_DATA 4
+
+/** チェックサムに失敗した。 */
 #define PASORI_ERR_CHKSUM 5
+
+/** コマンドの形式が異常。 */
 #define PASORI_ERR_FORMAT 6
+
+/** 未対応のハードウェア。 */
 #define PASORI_ERR_TYPE 7
 
 /*~DEFINE constants */
