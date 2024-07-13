@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install libusb
-        run: sudo apt-get install ${{ libusb_version }}
+        run: sudo apt-get install ${{ matrix.libusb_version }}
 
       - name: Configure CMake
         run: |
