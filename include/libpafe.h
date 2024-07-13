@@ -1,16 +1,8 @@
 /* $Id: libpafe.h,v 1.8 2009-10-31 08:54:53 hito Exp $ */
-#ifndef __LIBPASORI_H
-#define __LIBPASORI_H
+#ifndef LIBPAFE_LIBPASORI_H
+#define LIBPAFE_LIBPASORI_H
 
-/* DEFINE types */
-
-#ifndef uint8
-typedef unsigned char uint8;
-#endif
-
-#ifndef uint16
-typedef unsigned short int uint16;
-#endif
+#include <stdint.h>
 
 /* DEFINE pasori */
 
@@ -26,7 +18,7 @@ typedef struct tag_pasori pasori;
 /*~DEFINE pasori */
 
 typedef struct _ferica_area {
-    uint16 code, attr, bin;
+    uint16_t code, attr, bin;
     struct _ferica_area *next;
 } felica_area;
 
@@ -34,26 +26,26 @@ typedef struct _ferica_area {
 
 struct tag_felica {
     pasori *p;
-    uint16 systemcode;
-    uint8 IDm[8];
-    uint8 PMm[8];
-    uint16 area_num;
+    uint16_t systemcode;
+    uint8_t IDm[8];
+    uint8_t PMm[8];
+    uint16_t area_num;
     felica_area area[256];
-    uint16 service_num;
+    uint16_t service_num;
     felica_area service[256];
     struct tag_felica *next;
 };
 typedef struct tag_felica felica;
 
 struct tag_felica_block {
-    uint8 data[8];
+    uint8_t data[8];
 };
 typedef struct tag_felica_block felica_block;
 
 typedef struct _felica_block_info {
-    uint16 service;
-    uint8 mode;
-    uint16 block;
+    uint16_t service;
+    uint8_t mode;
+    uint16_t block;
 } felica_block_info;
 
 /*~DEFINE felica */

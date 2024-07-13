@@ -1,6 +1,6 @@
 /* $Id: felica_command.h,v 1.3 2008-01-15 12:24:26 hito Exp $ */
-#ifndef __FELICA_COMMAND_H
-#define __FELICA_COMMAND_H
+#ifndef LIBPAFE_FELICA_COMMAND_H
+#define LIBPAFE_FELICA_COMMAND_H
 
 /**
  * @brief REQC (リクエストコマンド C 型) を送信し、以降の通信で必要なデータを取得する。
@@ -11,7 +11,7 @@
  * @param timeslot タイムスロットの最大値を指定する。詳細は JIS X 6319-4 を参照のこと。
  * @return 成功した場合 `felica` 型のポインタを返す。返された `felica` 型のポインタは不要になったときに free(3) で開放する必要がある。 失敗すると NULL が返される。
  */
-felica *felica_polling(pasori *p, uint16 systemcode, uint8 RFU, uint8 timeslot);
+felica *felica_polling(pasori *p, uint16_t systemcode, uint8_t RFU, uint8_t timeslot);
 
 /**
  * @brief IDm (製造識別子) を取得する。
@@ -20,7 +20,7 @@ felica *felica_polling(pasori *p, uint16 systemcode, uint8 RFU, uint8 timeslot);
  * @param idm IDm を格納するためのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。
  */
-int felica_get_idm(felica *f, uint8 *idm);
+int felica_get_idm(felica *f, uint8_t *idm);
 
 /**
  * @brief PMm (製造パラメタ) を取得する。
@@ -29,7 +29,7 @@ int felica_get_idm(felica *f, uint8 *idm);
  * @param idm PMm を格納するためのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。
  */
-int felica_get_pmm(felica *f, uint8 *pmm);
+int felica_get_pmm(felica *f, uint8_t *pmm);
 
 /**
  * @brief Read コマンドを送信する。
@@ -42,7 +42,7 @@ int felica_get_pmm(felica *f, uint8 *pmm);
  *
  * @note RC-S330 では動作未確認。
  */
-int felica_read(felica *f, int *n, felica_block_info *info, uint8 *data);
+int felica_read(felica *f, int *n, felica_block_info *info, uint8_t *data);
 
 /**
  * @brief Read コマンドを送信する。ブロック数は 1 に固定。
@@ -54,7 +54,7 @@ int felica_read(felica *f, int *n, felica_block_info *info, uint8 *data);
  * @param data 応答データを格納するバッファへのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。
  */
-int felica_read_single(felica *f, int servicecode, int mode, uint8 block, uint8 *data);
+int felica_read_single(felica *f, int servicecode, int mode, uint8_t block, uint8_t *data);
 
 /**
  * @brief Request Service コマンドを送信する。
@@ -67,7 +67,7 @@ int felica_read_single(felica *f, int servicecode, int mode, uint8 block, uint8 
  *
  * @note RC-S330 では動作未確認。
  */
-int felica_request_service(felica *f, int *n, uint16 *list, uint16 *data);
+int felica_request_service(felica *f, int *n, uint16_t *list, uint16_t *data);
 
 /**
  * @brief Request Response コマンドを送信する。現在のモードを調べる。
@@ -78,7 +78,7 @@ int felica_request_service(felica *f, int *n, uint16 *list, uint16 *data);
  *
  * @note RC-S330 では動作未確認。
  */
-int felica_request_response(felica *f, uint8 *mode);
+int felica_request_response(felica *f, uint8_t *mode);
 
 /**
  * @brief 0xffffがサービスコードとして返却されるまで Search Service Code コマンドを送信する。
@@ -103,6 +103,6 @@ int felica_search_service(felica *f);
  * @param data 応答データを格納するバッファへのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。
  */
-int felica_request_system(felica *f, int *n, uint16 *data);
+int felica_request_system(felica *f, int *n, uint16_t *data);
 
 #endif

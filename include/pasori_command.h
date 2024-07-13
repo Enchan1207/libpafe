@@ -1,6 +1,6 @@
 /* $Id: pasori_command.h,v 1.3 2009-07-17 07:28:35 hito Exp $ */
-#ifndef __PASORI_COMMAND_H
-#define __PASORI_COMMAND_H
+#ifndef LIBPAFE_PASORI_COMMAND_H
+#define LIBPAFE_PASORI_COMMAND_H
 
 /**
  * @brief デバイスファイルをオープンする。
@@ -32,7 +32,7 @@ void pasori_close(pasori *p);
  * @param size 送出するデータへのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。
  */
-int pasori_send(pasori *p, uint8 *data, int *size);
+int pasori_send(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief PaSoRi からデータを受け取る。
@@ -42,7 +42,7 @@ int pasori_send(pasori *p, uint8 *data, int *size);
  * @param size バッファのサイズへのポインタ。
  * @return 成功した場合 0 を返す。失敗すると 0 以外の数値が返される。 size が参照している場所に格納したデータの長さが保存される。
  */
-int pasori_recv(pasori *p, uint8 *data, int *size);
+int pasori_recv(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief PaSoRi にコマンドを送出する。内部で pasori_send を呼び出している。
@@ -52,7 +52,7 @@ int pasori_recv(pasori *p, uint8 *data, int *size);
  * @param size 送出するデータのサイズへのポインタ。
  * @return 成功した場合 0 を返す。size が参照している場所に送出したデータの長さが保存される。失敗すると 0 以外の数値が返される。
  */
-int pasori_packet_write(pasori *p, uint8 *data, int *size);
+int pasori_packet_write(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief PaSoRi に送出したコマンドへの応答を取得する。内部で pasori_recv を呼び出している。
@@ -62,7 +62,7 @@ int pasori_packet_write(pasori *p, uint8 *data, int *size);
  * @param size バッファのサイズへのポインタ。
  * @return 成功した場合 0 を返す。size が参照している場所に取得したデータの長さが保存される。失敗すると 0 以外の数値が返される。
  */
-int pasori_packet_read(pasori *p, uint8 *data, int *size);
+int pasori_packet_read(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief FeliCa にデータを送信する。内部で pasori_packet_write を呼び出している。RC-S320 では PaSoRi2 コマンド 0x5C に対応する。
@@ -72,7 +72,7 @@ int pasori_packet_read(pasori *p, uint8 *data, int *size);
  * @param size バッファのサイズへのポインタ。
  * @return 成功した場合 0 を返す。size が参照している場所に送信したデータの長さが保存される。失敗すると 0 以外の数値が返される。
  */
-int pasori_write(pasori *p, uint8 *data, int *size);
+int pasori_write(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief FeliCa からの応答を受信する。内部で pasori_packet_read を呼び出している。
@@ -82,7 +82,7 @@ int pasori_write(pasori *p, uint8 *data, int *size);
  * @param size バッファのサイズへのポインタ。
  * @return 成功した場合 0 を返す。size が参照している場所に格納したデータの長さが保存される。失敗すると 0 以外の数値が返される。
  */
-int pasori_read(pasori *p, uint8 *data, int *size);
+int pasori_read(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief RC-S320 では Pasori にリセットコマンドを送出する。(PaSoRi2 コマンド 0x54) RC-S330 では RF Off などの処理を行う。
@@ -125,7 +125,7 @@ int pasori_type(pasori *p);
  *
  * @note RC-S320 のみ有効。
  */
-int pasori_test(pasori *p, int code, uint8 *data, int *size, uint8 *rdata, int *rsize);
+int pasori_test(pasori *p, int code, uint8_t *data, int *size, uint8_t *rdata, int *rsize);
 
 /**
  * @brief Pasori のエコーバックテストを行なう。(テストコード 0x00)
@@ -137,7 +137,7 @@ int pasori_test(pasori *p, int code, uint8 *data, int *size, uint8 *rdata, int *
  *
  * @note RC-S320 のみ有効。
  */
-int pasori_test_echo(pasori *p, uint8 *data, int *size);
+int pasori_test_echo(pasori *p, uint8_t *data, int *size);
 
 /**
  * @brief Pasori の EPROM テストを行なう。(テストコード 0x01)
