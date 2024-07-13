@@ -55,3 +55,4 @@ ln -s ../pasori.rules 010_pasori.rules
 
 - ZXB01226@nifty.com （オリジナルソースコード）
 - rfujita@redhat.com （RPM化及びバージョン0.0.7をベースにしたgit化）
+- [@Enchan1207](https://github.com/Enchan1207) （CMakeへの移行およびGitHub Actionsワークフローの構成）

@@ -18,6 +18,7 @@ target_compile_definitions(pafe PRIVATE
 )
 target_compile_options(pafe PRIVATE
     -Wall
+    -Wno-unused-variable
 )
 target_link_libraries(pafe PUBLIC
     ${LIBUSB_LIBRARY}
