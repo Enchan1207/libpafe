@@ -165,13 +165,13 @@ int felica_read(felica *f, int *n, felica_block_info *info, uint8 *data) {
     return 0;
 }
 
-int felica_read_single(felica *f, int servicecode, int mode, uint8 addr, uint8 *data) {
+int felica_read_single(felica *f, int servicecode, int mode, uint8 block, uint8 *data) {
     int n;
     felica_block_info info;
 
     info.service = servicecode;
     info.mode = mode;
-    info.block = addr;
+    info.block = block;
     n = 1;
 
     return felica_read(f, &n, &info, data);
