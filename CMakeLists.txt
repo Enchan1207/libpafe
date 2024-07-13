@@ -15,4 +15,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # subdirs
 add_subdirectory(src)
-add_subdirectory(tests)
+
+option(LIBPAFE_BUILD_SAMPLES "Build sample programs" OFF)
+
+if(LIBPAFE_BUILD_SAMPLES)
+    message(NOTICE "Build samples")
+    add_subdirectory(tests)
+endif()
