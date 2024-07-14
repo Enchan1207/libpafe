@@ -1,7 +1,4 @@
-#
-# Build libpafe
-#
-name: build
+name: Check compatibility
 
 on:
   push:
@@ -10,7 +7,7 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  check_libusb_compatibility:
     runs-on: ubuntu-latest
 
     strategy:
