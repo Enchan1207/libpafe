@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.21)
 include(${PROJECT_SOURCE_DIR}/cmake/configure-libusb.cmake)
 
 # Configure library
-macro(configure_target_common target_name)
+macro(configure_pafe_common target_name)
     target_sources(${target_name} PRIVATE
         felica_command.c
         pasori_command.c
@@ -29,10 +29,10 @@ macro(configure_target_common target_name)
 endmacro()
 
 add_library(pafe_static STATIC)
-configure_target_common(pafe_static)
+configure_pafe_common(pafe_static)
 
 if(LIBPAFE_BUILD_SHARED_LIBS)
     message(NOTICE "Build shared library too")
     add_library(pafe_shared SHARED)
-    configure_target_common(pafe_shared)
+    configure_pafe_common(pafe_shared)
 endif()
