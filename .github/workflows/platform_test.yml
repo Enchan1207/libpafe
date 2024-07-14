@@ -40,17 +40,15 @@ jobs:
           binaryURL=$(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/libusb/libusb/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith("7z")) .browser_download_url')
           curl -L $binaryURL -o libusb-latest.7z
 
-      - name: Install libusb from GitHub Release
+      - name: Extract libusb archive
         if: startsWith(matrix.os, 'windows')
         shell: bash
-        run: |
-          7z x libusb-latest.7z -olibusb-latest
-          export CMAKE_PREFIX_PATH="$(realpath libusb-latest/MinGW64/dll);$(realpath libusb-latest/include)"
+        run: 7z x libusb-latest.7z -olibusb-latest
 
       - name: Configure CMake
         shell: bash
         run: |
-          echo $CMAKE_PREFIX_PATH
+          export CMAKE_PREFIX_PATH="$(realpath libusb-latest/MinGW64/dll);$(realpath libusb-latest/include)"
           mkdir build
           cd build
           cmake .. -DLIBPAFE_BUILD_SAMPLES=ON -DLIBPAFE_BUILD_SHARED_LIBS=ON
