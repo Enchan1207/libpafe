@@ -28,7 +28,7 @@ jobs:
       - name: Install libusb from GitHub Release
         if: startsWith(matrix.os, 'windows')
         run: |
-          $libusb_bin = $(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/libusb/libusb/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith("7z")) .browser_download_url')
+          $libusb_bin = $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/libusb/libusb/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith("7z")) .browser_download_url')
           curl $libusb_bin -o libusb-latest.7z
           7z x libusb-latest.7z -o libusb-latest
           rm libusb-latest.7z
