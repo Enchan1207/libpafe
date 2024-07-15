@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           binaryURL=$(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/libusb/libusb/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith("7z")) .browser_download_url')
-          curl -L $binaryURL -o libusb-latest.7z
+          curl $binaryURL -o libusb-latest.7z
           7z x libusb-latest.7z -olibusb-latest
           rm libusb-latest.7z
           ls -R libusb-latest
