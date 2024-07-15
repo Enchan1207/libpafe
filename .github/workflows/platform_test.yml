@@ -50,7 +50,6 @@ jobs:
       - name: Configure CMake
         shell: bash
         run: |
-          echo $CMAKE_PREFIX_PATH
           mkdir build
           cd build
           cmake .. -DLIBPAFE_BUILD_SAMPLES=ON -DLIBPAFE_BUILD_SHARED_LIBS=ON
