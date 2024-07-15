@@ -18,15 +18,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install libusb from apt
-        if: startsWith(matrix.os, 'ubuntu')
+        if: ${{ startsWith(matrix.os, "ubuntu") }}
         run: sudo apt-get install "libusb-1.0-*"
 
       - name: Install libusb from brew
-        if: startsWith(matrix.os, 'macos')
+        if: ${{ startsWith(matrix.os, "macos") }}
         run: brew install libusb
 
       - name: Install libusb from GitHub Release
-        if: startsWith(matrix.os, 'windows')
+        if: ${{ startsWith(matrix.os, "windows") }}
         run: |
           $libusb_bin = $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/libusb/libusb/releases/latest | jq -r '.assets[] | select(.browser_download_url | endswith("7z")) .browser_download_url')
           curl $libusb_bin -o libusb-latest.7z
